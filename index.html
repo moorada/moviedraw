@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎥 Home Cinema</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .rules {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .input-section {
+            margin-bottom: 25px;
+        }
+
+        .film-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 3px solid #e0e6ed;
+            border-radius: 50px;
+            font-size: 1.1em;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .film-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #2c3e50;
+        }
+
+        .btn-draw {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #2c3e50;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .film-count {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .result-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 25px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .result-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .selected-film {
+            font-size: 1.8em;
+            color: #e74c3c;
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎥 Home Cinema</h1>
+            <div class="subtitle">Anonymous movie draw for discovering new films!</div>
+        </div>
+
+        <div class="rules">
+            <strong>🎯 The Format:</strong><br>
+            Pass the phone around, everyone secretly adds their hidden gem. The app picks for you! Only after watching will you discover who was the genius (or madman) behind the choice.
+        </div>
+
+        <div id="inputSection" class="input-section">
+            <input type="text" id="filmInput" class="film-input" placeholder="Enter movie title..." maxlength="100">
+            
+            <div class="button-group">
+                <button id="addBtn" class="btn btn-add">➕ Add Movie</button>
+                <button id="drawBtn" class="btn btn-draw" disabled>🎲 Draw</button>
+            </div>
+        </div>
+
+        <div id="filmCount" class="film-count" style="display: none;">
+            Movies added: <span id="count">0</span>
+        </div>
+
+        <div id="resultSection" class="result-section" style="display: none;">
+            <div class="result-title">🎊 Tonight you're watching:</div>
+            <div id="selectedFilm" class="selected-film"></div>
+            <button id="resetBtn" class="reset-btn">🔄 New Draw</button>
+        </div>
+    </div>
+
+    <script>
+        let films = [];
+        
+        const filmInput = document.getElementById('filmInput');
+        const addBtn = document.getElementById('addBtn');
+        const drawBtn = document.getElementById('drawBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const filmCount = document.getElementById('filmCount');
+        const count = document.getElementById('count');
+        const resultSection = document.getElementById('resultSection');
+        const selectedFilm = document.getElementById('selectedFilm');
+        const inputSection = document.getElementById('inputSection');
+
+        // Add movie
+        function addFilm() {
+            const filmTitle = filmInput.value.trim();
+            
+            if (filmTitle === '') {
+                alert('Please enter a movie title!');
+                return;
+            }
+            
+            if (films.includes(filmTitle.toLowerCase())) {
+                alert('This movie has already been added!');
+                return;
+            }
+            
+            films.push(filmTitle);
+            filmInput.value = '';
+            updateUI();
+            
+            // Small feedback animation
+            addBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                addBtn.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // Draw movie
+        function drawFilm() {
+            if (films.length === 0) return;
+            
+            const randomIndex = Math.floor(Math.random() * films.length);
+            const chosenFilm = films[randomIndex];
+            
+            selectedFilm.textContent = chosenFilm;
+            
+            inputSection.style.display = 'none';
+            filmCount.style.display = 'none';
+            resultSection.style.display = 'block';
+        }
+
+        // Reset for new draw
+        function resetApp() {
+            films = [];
+            filmInput.value = '';
+            inputSection.style.display = 'block';
+            resultSection.style.display = 'none';
+            filmCount.style.display = 'none';
+            updateUI();
+        }
+
+        // Update interface
+        function updateUI() {
+            count.textContent = films.length;
+            drawBtn.disabled = films.length < 2;
+            
+            if (films.length > 0) {
+                filmCount.style.display = 'block';
+            } else {
+                filmCount.style.display = 'none';
+            }
+        }
+
+        // Event listeners
+        addBtn.addEventListener('click', addFilm);
+        drawBtn.addEventListener('click', drawFilm);
+        resetBtn.addEventListener('click', resetApp);
+
+        // Enter key submission
+        filmInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addFilm();
+            }
+        });
+
+        // Auto focus on input
+        filmInput.focus();
+    </script>
+</body>
+</html>
