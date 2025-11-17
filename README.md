@@ -6,14 +6,17 @@ A simple web app for picking movies anonymously with friends.
 
 Everyone secretly adds a movie they think others haven't seen. The app randomly picks one. You only find out who suggested what after watching!
 
+## Try it now
+
+Open the app in your browser and start your movie night: [🎬 Movie Draw](https://moorada.github.io/moviedraw/)
+
 ## How to use
 
-1. Open the HTML file in any browser
-2. Pass your phone around
-3. Each person adds their movie suggestion
-4. Hit "Draw" when everyone's done
-5. Watch the chosen movie
-6. Reveal who picked what afterwards!
+1. Pass your phone around
+2. Each person adds their movie suggestion
+3. Hit "Draw" when everyone's done
+4. Watch the chosen movie
+5. Reveal who picked what afterwards!
 
 ## Features
 
