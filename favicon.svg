@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">MovieDraw icon</title>
+  <desc id="desc">A stylized cinema ticket with an M and a draw spark.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d3557"/>
+      <stop offset="100%" stop-color="#457b9d"/>
+    </linearGradient>
+    <linearGradient id="ticket" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f1faee"/>
+      <stop offset="100%" stop-color="#e9f5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <path d="M14 18h36a4 4 0 0 1 4 4v4a4 4 0 0 0 0 8v4a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4v-4a4 4 0 0 0 0-8v-4a4 4 0 0 1 4-4Z" fill="url(#ticket)"/>
+  <path d="M20 37V25h5l7 9 7-9h5v12h-4v-7l-8 10-8-10v7Z" fill="#1d3557"/>
+  <circle cx="50" cy="14" r="5" fill="#e63946"/>
+  <path d="M50 8v3M50 17v3M44 14h3M53 14h3" stroke="#f1faee" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

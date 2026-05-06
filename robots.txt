@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moviedraw.alongale.com/sitemap.xml

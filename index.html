@@ -3,7 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎥 Home Cinema</title>
+    <title>MovieDraw | Random Movie Picker for Home Cinema Nights</title>
+    <meta name="description" content="MovieDraw helps friends pick a movie at random for home cinema nights. Add film titles anonymously, draw one winner, and enjoy the surprise.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="MovieDraw">
+    <meta name="theme-color" content="#1d3557">
+    <link rel="canonical" href="https://moviedraw.alongale.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MovieDraw">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="MovieDraw | Random Movie Picker for Home Cinema Nights">
+    <meta property="og:description" content="Add movie titles anonymously and let MovieDraw pick tonight's film at random.">
+    <meta property="og:url" content="https://moviedraw.alongale.com/">
+    <meta property="og:image" content="https://moviedraw.alongale.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MovieDraw movie ticket style logo">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="MovieDraw | Random Movie Picker">
+    <meta name="twitter:description" content="A simple, anonymous movie draw app for your group watch nights.">
+    <meta name="twitter:image" content="https://moviedraw.alongale.com/og-image.png">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "MovieDraw",
+      "url": "https://moviedraw.alongale.com/",
+      "applicationCategory": "EntertainmentApplication",
+      "operatingSystem": "Any",
+      "description": "Anonymous movie picker for home cinema nights.",
+      "image": "https://moviedraw.alongale.com/og-image.png",
+      "inLanguage": "en",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -26,14 +73,14 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px;
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
         }
 
         .header {
             margin-bottom: 30px;
+            text-align: center;
         }
 
         .header h1 {
@@ -56,12 +103,19 @@
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 30px;
-            font-size: 0.9em;
+            font-size: 0.95em;
             line-height: 1.6;
         }
 
         .input-section {
             margin-bottom: 25px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
         }
 
         .film-input {
@@ -132,6 +186,7 @@
             margin: 20px 0;
             font-weight: bold;
             color: #2c3e50;
+            text-align: center;
         }
 
         .result-section {
@@ -140,6 +195,7 @@
             border-radius: 20px;
             margin-top: 25px;
             animation: slideIn 0.5s ease-out;
+            text-align: center;
         }
 
         .result-title {
@@ -155,6 +211,7 @@
             font-weight: bold;
             margin: 15px 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            word-break: break-word;
         }
 
         .reset-btn {
@@ -174,11 +231,24 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -190,11 +260,11 @@
                 padding: 20px;
                 margin: 10px;
             }
-            
+
             .header h1 {
                 font-size: 2em;
             }
-            
+
             .button-group {
                 flex-direction: column;
             }
@@ -202,40 +272,42 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎥 Home Cinema</h1>
-            <div class="subtitle">Anonymous movie draw for discovering new films!</div>
-        </div>
+    <main class="container">
+        <header class="header">
+            <h1>🎬 MovieDraw</h1>
+            <p class="subtitle">Anonymous movie draw for discovering new films with friends.</p>
+        </header>
 
-        <div class="rules">
-            <strong>🎯 The Format:</strong><br>
-            Pass the phone around, everyone secretly adds their hidden gem. The app picks for you! Only after watching will you discover who was the genius (or madman) behind the choice.
-        </div>
+        <section class="rules" aria-label="How MovieDraw works">
+            <strong>🎯 How it works:</strong><br>
+            Pass the phone around and let everyone add one secret movie. When you're done, draw one title at random and enjoy the reveal after the watch.
+        </section>
 
-        <div id="inputSection" class="input-section">
-            <input type="text" id="filmInput" class="film-input" placeholder="Enter movie title..." maxlength="100">
-            
+        <section id="inputSection" class="input-section" aria-label="Movie input">
+            <label class="input-label" for="filmInput">Add a movie title</label>
+            <input type="text" id="filmInput" class="film-input" placeholder="Enter movie title..." maxlength="100" autocomplete="off" aria-describedby="movieTips">
+            <p id="movieTips" class="visually-hidden">Add at least two movies before drawing.</p>
+
             <div class="button-group">
-                <button id="addBtn" class="btn btn-add">➕ Add Movie</button>
-                <button id="drawBtn" class="btn btn-draw" disabled>🎲 Draw</button>
+                <button id="addBtn" class="btn btn-add" type="button">➕ Add Movie</button>
+                <button id="drawBtn" class="btn btn-draw" type="button" disabled>🎲 Draw</button>
             </div>
-        </div>
+        </section>
 
-        <div id="filmCount" class="film-count" style="display: none;">
+        <section id="filmCount" class="film-count" style="display: none;" aria-live="polite">
             Movies added: <span id="count">0</span>
-        </div>
+        </section>
 
-        <div id="resultSection" class="result-section" style="display: none;">
-            <div class="result-title">🎊 Tonight you're watching:</div>
-            <div id="selectedFilm" class="selected-film"></div>
-            <button id="resetBtn" class="reset-btn">🔄 New Draw</button>
-        </div>
-    </div>
+        <section id="resultSection" class="result-section" style="display: none;" aria-live="polite">
+            <h2 class="result-title">🎊 Tonight you're watching:</h2>
+            <p id="selectedFilm" class="selected-film"></p>
+            <button id="resetBtn" class="reset-btn" type="button">🔄 New Draw</button>
+        </section>
+    </main>
 
     <script>
         let films = [];
-        
+
         const filmInput = document.getElementById('filmInput');
         const addBtn = document.getElementById('addBtn');
         const drawBtn = document.getElementById('drawBtn');
@@ -246,46 +318,47 @@
         const selectedFilm = document.getElementById('selectedFilm');
         const inputSection = document.getElementById('inputSection');
 
-        // Add movie
+        function normalizeTitle(title) {
+            return title.trim().toLowerCase();
+        }
+
         function addFilm() {
             const filmTitle = filmInput.value.trim();
-            
-            if (filmTitle === '') {
-                alert('Please enter a movie title!');
+            const normalizedTitle = normalizeTitle(filmTitle);
+
+            if (!filmTitle) {
+                alert('Please enter a movie title.');
                 return;
             }
-            
-            if (films.includes(filmTitle.toLowerCase())) {
-                alert('This movie has already been added!');
+
+            const duplicate = films.some((film) => normalizeTitle(film) === normalizedTitle);
+            if (duplicate) {
+                alert('This movie has already been added.');
                 return;
             }
-            
+
             films.push(filmTitle);
             filmInput.value = '';
             updateUI();
-            
-            // Small feedback animation
+
             addBtn.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 addBtn.style.transform = 'scale(1)';
             }, 100);
         }
 
-        // Draw movie
         function drawFilm() {
-            if (films.length === 0) return;
-            
+            if (films.length < 2) return;
+
             const randomIndex = Math.floor(Math.random() * films.length);
             const chosenFilm = films[randomIndex];
-            
+
             selectedFilm.textContent = chosenFilm;
-            
             inputSection.style.display = 'none';
             filmCount.style.display = 'none';
             resultSection.style.display = 'block';
         }
 
-        // Reset for new draw
         function resetApp() {
             films = [];
             filmInput.value = '';
@@ -295,31 +368,22 @@
             updateUI();
         }
 
-        // Update interface
         function updateUI() {
             count.textContent = films.length;
             drawBtn.disabled = films.length < 2;
-            
-            if (films.length > 0) {
-                filmCount.style.display = 'block';
-            } else {
-                filmCount.style.display = 'none';
-            }
+            filmCount.style.display = films.length > 0 ? 'block' : 'none';
         }
 
-        // Event listeners
         addBtn.addEventListener('click', addFilm);
         drawBtn.addEventListener('click', drawFilm);
         resetBtn.addEventListener('click', resetApp);
 
-        // Enter key submission
-        filmInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
+        filmInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
                 addFilm();
             }
         });
 
-        // Auto focus on input
         filmInput.focus();
     </script>
 </body>
